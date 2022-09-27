@@ -13,13 +13,18 @@ class Proveedor(models.Model):
     def __str__(self):
         return '%s %s' % (self.nombre,self.nit)
 
+class Categoria(models.Model):
+    nombre = models.CharField(max_length=45)
+    creacion = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return '%s' % (self.nombre)
 
 
-
-class Producto(models.Model):
+class Product(models.Model):
     nombre = models.CharField(max_length=45)
     descripcion = models.CharField(max_length=200)
-    categoria = models.CharField(max_length=50)
+    categoria = models.ForeignKey(Categoria,on_delete=models.CASCADE)
     cantidad = models.IntegerField()
     precio = models.DecimalField(max_digits=20, decimal_places=2)
     icono = models.ImageField()
@@ -29,6 +34,7 @@ class Producto(models.Model):
 
     def __str__(self):
         return '%s %s' % (self.nombre,self.descripcion)
+
 
 
 class Cliente(models.Model):
@@ -75,7 +81,7 @@ class Empleado(models.Model):
 class Venta(models.Model):
     fecha = models.DateField(auto_now_add=True)
     cliente = models.ForeignKey(Cliente,on_delete=models.CASCADE)
-    producto = models.ManyToManyField(Producto)
+    producto = models.ManyToManyField(Product)
     total = models.DecimalField(max_digits=20, decimal_places=2)
     empleado = models.ForeignKey(Empleado,on_delete=models.CASCADE)
     
@@ -86,7 +92,7 @@ class Cotizacion(models.Model):
     fecha = models.DateField(auto_now_add=True)
     total = models.DecimalField(max_digits=20, decimal_places=2)
     empleado = models.ForeignKey(Empleado,on_delete=models.CASCADE)
-    producto = models.ManyToManyField(Producto)
+    producto = models.ManyToManyField(Product)
 
     def __str__(self):
         return '%s %s' % (self.fecha,self.total)

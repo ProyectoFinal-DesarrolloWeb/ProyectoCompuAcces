@@ -919,3 +919,38 @@ html, body{
 		margin-top: 20px;
 	}
 }
+
+.button55 {
+    background-color: #2e6da4;
+	width: 250px;
+    border-radius: 8px;
+	border-color: #fff;
+    color: white;
+    text-align: center;
+    display: inline-block;
+    font-size: 18px;
+}
+
+
+.contact-form {
+    background-color:#ffffff;
+    width:500px;
+    padding:20px;
+    margin: 50px auto;  
+    border: 6px solid #2e6da4;
+    -moz-border-radius:15px;
+    -webkit-border-radius:15px;
+    border-radius:15px;
+    position:relative;
+}
+
+.contact-form input, #contact-form select{
+    width:450px;
+    border: 1px solid #483f96; 
+    margin-bottom:20px; 
+    padding:4px;
+}
+.contact-form input:focus, #contact-form select:focus{
+    border: 1px solid #2DAFC5;
+    background-color: #CCE8DF;
+}
