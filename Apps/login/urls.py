@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path,include
 from .views import LoginView, HomeView, ClienteView, ProveedorView, ProductosView,UsuariosView,VentasView,VentasListView
 from Apps.login import views
+from .views import CrearProveedorView
 app_name='login'
 
 urlpatterns = [
@@ -27,5 +28,7 @@ urlpatterns = [
  path('productos/', ProductosView.as_view(), name='productosapp'),
  path('usuarios/', UsuariosView.as_view(), name='usuariosapp'),
  path('ventas/', VentasView.as_view(), name='ventasapp'),
- path('ventaslist', VentasListView.as_view(), name='ventaslistapp')
+ path('ventaslist', VentasListView.as_view(), name='ventaslistapp'),
+
+  path('crearProveedor/',CrearProveedorView.as_view(), name='crearproveedor'),
 ]

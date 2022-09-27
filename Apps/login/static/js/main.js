@@ -26,12 +26,12 @@ $(document).ready(function(){
     		navOption.addClass('navBar-options-change');
     	}
     });
-    /*Salir del sistema*/
+    /*Salir del sistema
     $('.btn-exit').on('click', function(){
     	swal({
-		  	title: 'You want out of the system?',
-		 	text: "The current session will be closed and will leave the system",
-		  	type: 'warning',
+		  	title: 'Cerra sesión',
+		 	text: "¿Está seguro de cerrar sesión?",
+		  	type: 'Advertencia',
 		  	showCancelButton: true,
 		  	confirmButtonText: 'Yes, exit',
 		  	closeOnConfirm: false
@@ -41,7 +41,7 @@ $(document).ready(function(){
 		    	window.location='index.html'; 
 		  	}
 		});
-    });
+    });*/
     /*Mostrar y ocultar submenus*/
     $('.btn-subMenu').on('click', function(){
     	var subMenu=$(this).next('ul');

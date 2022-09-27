@@ -1,5 +1,7 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView
+from .forms import ProveedorForm
+from django.urls import reverse_lazy
+from django.views.generic import TemplateView, CreateView
 # Create your views here.
 
 class LoginView(TemplateView):
@@ -25,3 +27,9 @@ class VentasView(TemplateView):
 
 class VentasListView(TemplateView):
     template_name='sales.html'
+
+
+class CrearProveedorView(CreateView):
+    template_name="providers.html"
+    form_class=ProveedorForm
+    success_url= reverse_lazy('login:homeapp')
