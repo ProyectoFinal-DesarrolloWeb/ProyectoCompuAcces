@@ -19,55 +19,68 @@
 							<div class="full-width panel-tittle bg-primary text-center tittles">
 								Nuevo Cliente
 							</div>
+							
+							
 							<div class="full-width panel-content">
-								<form>
+
+								<p class="text-center">
+									<a href="{% url 'login:crearcliente' %}">
+										<button
+											class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored bg-primary"
+											id="btn-addProvider">
+											<i class="zmdi zmdi-plus"></i>
+										</button>
+									</a>
+								<div class="mdl-tooltip" for="btn-addProvider">Agregar Cliente</div>
+								</p>
+
+								<div class="contact-form ">
+									<form method="POST">
+										{% csrf_token %}
 									<div class="mdl-grid">
 										<div class="mdl-cell mdl-cell--12-col">
 									        <legend class="text-condensedLight"><i class="zmdi zmdi-border-color"></i> &nbsp; DATOS CLIENTE</legend><br>
 									    </div>
-									    <div class="mdl-cell mdl-cell--12-col">
-											<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-												<input class="mdl-textfield__input" type="number" pattern="-?[0-9]*(\.[0-9]+)?" id="DNIClient">
-												<label class="mdl-textfield__label" for="DNIClient">NIT</label>
-											
-											</div>
-									    </div>
-									    <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
-											<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-												<input class="mdl-textfield__input" type="text" pattern="-?[A-Za-záéíóúÁÉÍÓÚ ]*(\.[0-9]+)?" id="NameClient">
-												<label class="mdl-textfield__label" for="NameClient">Nombre</label>
-												
-											</div>
-									    </div>
-									    <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
-											<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-												<input class="mdl-textfield__input" type="text" pattern="-?[A-Za-záéíóúÁÉÍÓÚ ]*(\.[0-9]+)?" id="LastNameClient">
-												<label class="mdl-textfield__label" for="LastNameClient">Apellido</label>
-											
-											</div>
-									    </div>
 
-									    <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
-											<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-												<input class="mdl-textfield__input" type="tel" pattern="-?[0-9+()- ]*(\.[0-9]+)?" id="phoneClient">
-												<label class="mdl-textfield__label" for="phoneClient">Telefono</label>
-												
+										<div class="mdl-textfield__input">
+											<div class=" mdl-textfield mdl-js-textfield mdl-textfield--floating-label ">
+												Nombre {{form.nombre}}
+	
 											</div>
-									    </div>
+										</div>
+
+									    <div class="mdl-textfield__input ">
+											<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+												Apellido {{form.apellido}}
+											</div>
+										</div>
+
+										<div class="mdl-textfield__input ">
+											<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+												No. Nit {{form.nit}}
+											</div>
+										</div>
+
+										<div class="mdl-textfield__input ">
+											<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+												Teléfono{{form.telefono}}
+											</div>
+										</div>
 								
 									</div>
 									<p class="text-center">
-										<button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored bg-primary" id="btn-addClient">
-											<i class="zmdi zmdi-plus"></i>
-										</button>
-										<div class="mdl-tooltip" for="btn-addClient">Agregar Cliente</div>
+										<button class="button55 " style='width:130px; height:45px'
+											type="submit">Guardar</button>
 									</p>
 								</form>
+							</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+
+
 			<div class="mdl-tabs__panel" id="tabListClient">
 				<div class="mdl-grid">
 					<div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--8-col-desktop mdl-cell--2-offset-desktop">

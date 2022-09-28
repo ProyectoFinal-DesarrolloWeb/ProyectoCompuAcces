@@ -32,8 +32,8 @@
 						</p>
 
 						<div class="contact-form ">
-							<form method="POST">
-								{% csrf_token %}
+						<!--	<form >
+								
 								<div class="mdl-grid">
 									<div class="mdl-cell mdl-cell--12-col">
 										<legend class="text-condensedLight"><i class="zmdi zmdi-border-color"></i>
@@ -102,7 +102,19 @@
 										type="submit">Guardar</button>
 								</p>
 
-							</form>
+							</form>-->
+							<div class="mdl-cell mdl-cell--12-col">
+								<legend class="text-condensedLight"><i class="zmdi zmdi-border-color"></i>
+									&nbsp; Datos del Producto</legend><br>
+							</div>
+							<form method = "post" enctype="multipart/form-data"> 
+								{% csrf_token %} 
+								{{ form.as_p }} 
+								<p class="text-center">
+									<button class="button55 " style='width:130px; height:45px'
+										type="submit">Guardar</button>
+								</p>
+							</form> 
 						</div>
 
 					

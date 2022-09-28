@@ -3,9 +3,8 @@
 {% block contenido%}
 <section class="full-width header-well">
 	<div class="full-width header-well-icon">
-		<i class="zmdi zmdi-shopping-cart"></i>
+		<i class="zmdi zmdi-washing-machine"></i>
 	</div>
-
 </section>
 <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
 	<div class="mdl-tabs__tab-bar">
@@ -16,36 +15,30 @@
 			<div class="mdl-cell mdl-cell--12-col">
 				<div class="full-width panel mdl-shadow--2dp">
 					<div class="full-width panel-tittle bg-primary text-center tittles">
-						Nueva Venta
+						Nueva Cotización
 					</div>
 					<div class="full-width panel-content">
+
 						<p class="text-center">
-							<a href="{% url 'login:crearventa' %}">
+							<a href="{% url 'login:crearcotizacion' %}">
 								<button
 									class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored bg-primary"
 									id="btn-addProvider">
 									<i class="zmdi zmdi-plus"></i>
 								</button>
 							</a>
-						<div class="mdl-tooltip" for="btn-addProvider">Agregar Venta</div>
+						<div class="mdl-tooltip" for="btn-addProvider">Generar Cotización</div>
 						</p>
 
 						<div class="contact-form ">
 							<form method="POST">
-
 								{% csrf_token %}
-
 								<div class="mdl-grid">
 									<div class="mdl-cell mdl-cell--12-col">
 										<legend class="text-condensedLight"><i class="zmdi zmdi-border-color"></i>
-											&nbsp; DATOS VENTA</legend><br>
+											&nbsp; Datos para la cotización</legend><br>
 									</div>
 
-									<div class="mdl-textfield__input">
-										<div class=" mdl-textfield mdl-js-textfield mdl-textfield--floating-label ">
-											Cliente {{form.cliente}}
-										</div>
-									</div>
 
 									<div class="mdl-textfield__input">
 										<div class=" mdl-textfield mdl-js-textfield mdl-textfield--floating-label ">
@@ -55,10 +48,16 @@
 
 									<div class="mdl-textfield__input">
 										<div class=" mdl-textfield mdl-js-textfield mdl-textfield--floating-label ">
-											Total Q {{form.total}}
+											Total {{form.total}}
 										</div>
 									</div>
 
+
+
+									<div class="mdl-cell mdl-cell--12-col">
+										<legend class="text-condensedLight"><i class="zmdi zmdi-border-color"></i>
+											&nbsp; Datos del Empleado</legend><br>
+									</div>
 									<div class="mdl-textfield__input">
 										<div class=" mdl-textfield mdl-js-textfield mdl-textfield--floating-label ">
 											Empleado {{form.empleado}}
@@ -67,6 +66,7 @@
 
 								</div>
 
+
 								<p class="text-center">
 									<button class="button55 " style='width:130px; height:45px'
 										type="submit">Guardar</button>
@@ -74,10 +74,15 @@
 
 							</form>
 						</div>
+
+					
+
 					</div>
+
+					
 				</div>
 			</div>
 		</div>
-
 	</div>
-	{% endblock %}
+</div>
+{% endblock %}

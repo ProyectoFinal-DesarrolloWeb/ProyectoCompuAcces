@@ -21,7 +21,7 @@ class Categoria(models.Model):
         return '%s' % (self.nombre)
 
 
-class Product(models.Model):
+class Producto(models.Model):
     nombre = models.CharField(max_length=45)
     descripcion = models.CharField(max_length=200)
     categoria = models.ForeignKey(Categoria,on_delete=models.CASCADE)
@@ -33,7 +33,7 @@ class Product(models.Model):
 
 
     def __str__(self):
-        return '%s %s' % (self.nombre,self.descripcion)
+        return '%s' % (self.nombre)
 
 
 
@@ -81,7 +81,7 @@ class Empleado(models.Model):
 class Venta(models.Model):
     fecha = models.DateField(auto_now_add=True)
     cliente = models.ForeignKey(Cliente,on_delete=models.CASCADE)
-    producto = models.ManyToManyField(Product)
+    producto = models.ManyToManyField(Producto)
     total = models.DecimalField(max_digits=20, decimal_places=2)
     empleado = models.ForeignKey(Empleado,on_delete=models.CASCADE)
     
@@ -92,7 +92,7 @@ class Cotizacion(models.Model):
     fecha = models.DateField(auto_now_add=True)
     total = models.DecimalField(max_digits=20, decimal_places=2)
     empleado = models.ForeignKey(Empleado,on_delete=models.CASCADE)
-    producto = models.ManyToManyField(Product)
+    producto = models.ManyToManyField(Producto)
 
     def __str__(self):
         return '%s %s' % (self.fecha,self.total)
