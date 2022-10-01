@@ -13,6 +13,7 @@ class Proveedor(models.Model):
     def __str__(self):
         return '%s %s' % (self.nombre,self.nit)
 
+
 class Categoria(models.Model):
     nombre = models.CharField(max_length=45)
     creacion = models.DateTimeField(auto_now_add=True)
@@ -34,7 +35,6 @@ class Producto(models.Model):
 
     def __str__(self):
         return '%s' % (self.nombre)
-
 
 
 class Cliente(models.Model):
