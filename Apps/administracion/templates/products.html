@@ -1,0 +1,222 @@
+{% extends 'base.html'%}
+{% load static%}
+{% block contenido%}
+<section class="full-width header-well">
+	<div class="full-width header-well-icon">
+		<i class="zmdi zmdi-washing-machine"></i>
+	</div>
+</section>
+<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+	<div class="mdl-tabs__tab-bar">
+		<a href="#tabNewProduct" class="mdl-tabs__tab is-active">NUEVO</a>
+		<a href="#tabListProducts" class="mdl-tabs__tab">LISTA</a>
+	</div>
+	<div class="mdl-tabs__panel is-active" id="tabNewProduct">
+		<div class="mdl-grid">
+			<div class="mdl-cell mdl-cell--12-col">
+				<div class="full-width panel mdl-shadow--2dp">
+					<div class="full-width panel-tittle bg-primary text-center tittles">
+						Nuevo Producto
+					</div>
+					<div class="full-width panel-content">
+
+						<p class="text-center">
+							<a href="{% url 'administracion:crearproducto' %}">
+								<button
+									class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored bg-primary"
+									id="btn-addProvider">
+									<i class="zmdi zmdi-plus"></i>
+								</button>
+							</a>
+						<div class="mdl-tooltip" for="btn-addProvider">Agregar Producto</div>
+						</p>
+
+						<div class="contact-form ">
+						<!--	<form >
+								
+								<div class="mdl-grid">
+									<div class="mdl-cell mdl-cell--12-col">
+										<legend class="text-condensedLight"><i class="zmdi zmdi-border-color"></i>
+											&nbsp; Datos del Producto</legend><br>
+									</div>
+
+
+									<div class="mdl-textfield__input">
+										<div class=" mdl-textfield mdl-js-textfield mdl-textfield--floating-label ">
+											Nombre {{form.nombre}}
+										</div>
+									</div>
+
+									<div class="mdl-textfield__input">
+										<div class=" mdl-textfield mdl-js-textfield mdl-textfield--floating-label ">
+											Descripcion {{form.descripcion}}
+										</div>
+									</div>
+
+									<div class="mdl-cell mdl-cell--12-col">
+										<legend class="text-condensedLight"><i class="zmdi zmdi-border-color"></i>
+											&nbsp; CATEGORIA</legend><br>
+									</div>
+
+
+									<div class="mdl-textfield__input">
+										<div class=" mdl-textfield mdl-js-textfield mdl-textfield--floating-label ">
+											Categoria {{form.categoria}}
+										</div>
+									</div>
+
+									<div class="mdl-textfield__input">
+										<div class=" mdl-textfield mdl-js-textfield mdl-textfield--floating-label ">
+											Cantidad{{form.cantidad}}
+										</div>
+									</div>
+
+									<div class="mdl-textfield__input">
+										<div class=" mdl-textfield mdl-js-textfield mdl-textfield--floating-label ">
+											Precio Q {{form.precio}}
+										</div>
+									</div>
+
+									<div class="mdl-textfield__input">
+										<div class=" mdl-textfield mdl-js-textfield mdl-textfield--floating-label ">
+											Imagen {{form.icono}}
+										</div>
+									</div>
+
+
+									<div class="mdl-cell mdl-cell--12-col">
+										<legend class="text-condensedLight"><i class="zmdi zmdi-border-color"></i>
+											&nbsp; Datos del Proveedor</legend><br>
+									</div>
+									<div class="mdl-textfield__input">
+										<div class=" mdl-textfield mdl-js-textfield mdl-textfield--floating-label ">
+											Proveedor {{form.proveedor}}
+										</div>
+									</div>
+
+								</div>
+
+
+								<p class="text-center">
+									<button class="button55 " style='width:130px; height:45px'
+										type="submit">Guardar</button>
+								</p>
+
+							</form>-->
+							<div class="mdl-cell mdl-cell--12-col">
+								<legend class="text-condensedLight"><i class="zmdi zmdi-border-color"></i>
+									&nbsp; Datos del Producto</legend><br>
+							</div>
+							<form method = "post" enctype="multipart/form-data"> 
+								{% csrf_token %} 
+								{{ form.as_p }} 
+								<p class="text-center">
+									<button class="button55 " style='width:130px; height:45px'
+										type="submit">Guardar</button>
+								</p>
+							</form> 
+						</div>
+
+					
+
+					</div>
+
+					
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="mdl-tabs__panel" id="tabListProducts">
+		<div class="mdl-grid">
+			<div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop">
+				<form action="#">
+					<div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+						<label class="mdl-button mdl-js-button mdl-button--icon" for="searchProduct">
+							<i class="zmdi zmdi-search"></i>
+						</label>
+						<div class="mdl-textfield__expandable-holder">
+							<input class="mdl-textfield__input" type="text" id="searchProduct">
+							<label class="mdl-textfield__label"></label>
+						</div>
+					</div>
+				</form>
+				<nav class="full-width menu-categories">
+					<ul class="list-unstyle text-center">
+						<li><a href="#!">Accesorios</a></li>
+						<li><a href="#!">Teclados</a></li>
+						<li><a href="#!">Portatiles</a></li>
+					</ul>
+				</nav>
+				<div class="full-width text-center" style="padding: 30px 0;">
+					<div class="mdl-card mdl-shadow--2dp full-width product-card">
+						<div class="mdl-card__title">
+							<img src="assets/img/fontLogin.jpg" alt="product" class="img-responsive">
+						</div>
+						<div class="mdl-card__supporting-text">
+							<small>Cantidad</small><br>
+							<small>Categoria</small><br>
+							<small>Precio</small>
+						</div>
+						<div class="mdl-card__actions mdl-card--border">
+							Nombre del Producto
+							<button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+								<i class="zmdi zmdi-more"></i>
+							</button>
+						</div>
+					</div>
+					<div class="mdl-card mdl-shadow--2dp full-width product-card">
+						<div class="mdl-card__title">
+							<img src="assets/img/fontLogin.jpg" alt="product" class="img-responsive">
+						</div>
+						<div class="mdl-card__supporting-text">
+							<small>Cantidad</small><br>
+							<small>Categoria</small><br>
+							<small>Precio</small>
+						</div>
+						<div class="mdl-card__actions mdl-card--border">
+							Nombre del Producto
+							<button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+								<i class="zmdi zmdi-more"></i>
+							</button>
+						</div>
+					</div>
+					<div class="mdl-card mdl-shadow--2dp full-width product-card">
+						<div class="mdl-card__title">
+							<img src="assets/img/fontLogin.jpg" alt="product" class="img-responsive">
+						</div>
+						<div class="mdl-card__supporting-text">
+							<small>Cantidad</small><br>
+							<small>Categoria</small><br>
+							<small>Precio</small>
+						</div>
+						<div class="mdl-card__actions mdl-card--border">
+							Nombre del Producto
+							<button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+								<i class="zmdi zmdi-more"></i>
+							</button>
+						</div>
+					</div>
+					<div class="mdl-card mdl-shadow--2dp full-width product-card">
+						<div class="mdl-card__title">
+							<img src="assets/img/fontLogin.jpg" alt="product" class="img-responsive">
+						</div>
+						<div class="mdl-card__supporting-text">
+							<small>Cantidad</small><br>
+							<small>Categoria</small><br>
+							<small>Precio</small>
+						</div>
+						<div class="mdl-card__actions mdl-card--border">
+							Nombre del Producto
+							<button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+								<i class="zmdi zmdi-more"></i>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
