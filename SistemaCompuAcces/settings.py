@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'Apps.login',
     'Apps.administracion',
     'Apps.usuarios',
-    'Apps.cliente'
+    'Apps.cliente',
+    'Apps.ventas',
 ]
 
 MIDDLEWARE = [
@@ -80,9 +81,9 @@ WSGI_APPLICATION = 'SistemaCompuAcces.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'compuacces',
-        'USER': 'root',
-        'PASSWORD': 'admin',
+        'NAME': 'CompuAccess',
+        'USER': 'SaraJr',
+        'PASSWORD': '1234',
         'HOST':'localhost',
         'PORT':'',
 
