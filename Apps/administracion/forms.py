@@ -4,9 +4,43 @@ from .models import Proveedor,Producto
 class ProveedorForm(forms.ModelForm):
     class Meta:
         model=Proveedor
-        fields = '__all__'
+        fields = ('nombre','telefono','direccion','nit')
+        labels={
+            'nombre' : 'Nombre Proveedor: ',
+            'telefono' : 'Telefono: ',
+            'direccion' : 'Dirección: ',
+            'nit' : 'No. Nit:  '
+
+        }
+
+class EditarProveedorForm(forms.ModelForm):    
+    class Meta:
+        model=Proveedor
+        fields = ('nombre','telefono','direccion','nit')
+        labels={
+            'nombre' : 'Nombre Proveedor: ',
+            'telefono' : 'Telefono: ',
+            'direccion' : 'Dirección: ',
+            'nit' : 'No. Nit: '
+
+        }
+        widgets={
+            'nombre' : forms.TextInput(attrs={'type':'text','id':'nombre_editar'}),
+            'telefono' : forms.TextInput(attrs={'id':'telefono_editar'}),
+            'direccion' : forms.TextInput(attrs={'id':'direccion_editar'}),
+            'nit' : forms.TextInput(attrs={'id':'nit_editar'}),
+        }
 
 class ProductoForm(forms.ModelForm):
     class Meta:
         model=Producto
-        fields = '__all__'
+        fields = ('nombre','descripcion','categoria','cantidad','precio','icono','proveedor')
+        labels={
+            'nombre' : 'Nombre Producto: ',
+            'descripcion' : 'Descripción: ',
+            'categoria' : 'Categoría: ',
+            'cantidad' : 'Cantidad:  ',
+            'precio' : 'Precio: ',
+            'icono' : 'Adjuntar Imagen:  ',
+            'proveedor' : 'Proveedor: '
+        }

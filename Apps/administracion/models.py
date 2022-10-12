@@ -8,7 +8,10 @@ class Proveedor(models.Model):
     direccion = models.CharField(max_length=45)
     nit = models.CharField(max_length=10)
     creacion = models.DateTimeField(auto_now_add=True)
-
+    
+    class Meta:
+        verbose_name='proveedores'
+        verbose_name_plural='proveedores'
 
     def __str__(self):
         return '%s %s' % (self.nombre,self.nit)
@@ -32,6 +35,9 @@ class Producto(models.Model):
     proveedor = models.ManyToManyField(Proveedor)
     creacion = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        verbose_name='productos'
+        verbose_name_plural='productos'
 
     def __str__(self):
         return '%s' % (self.nombre)

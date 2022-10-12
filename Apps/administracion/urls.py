@@ -15,16 +15,22 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from .views import ProveedorView, ProductosView
+from .views import proveedor_view, productos_view, EditarProveedor_view, BorrarProveedor_view
 from Apps.administracion import views
-from .views import CrearProveedorView, CrearProductoView
+from .views import CrearProveedor_view, CrearProducto_view
+
 app_name='administracion'
 
+
 urlpatterns = [
- path('proveedor/', ProveedorView.as_view(), name='proveedorapp'),
- path('productos/', ProductosView.as_view(), name='productosapp'),
+path('proveedor/', views.proveedor_view, name='proveedorapp'),
+path('productos/', views.productos_view, name='productosapp'),
 
 
-  path('crearProveedor/',CrearProveedorView.as_view(), name='crearproveedor'),
-  path('crearProducto/',CrearProductoView.as_view(), name='crearproducto'),
+path('crearProveedor/',views.CrearProveedor_view, name='crearproveedor'),
+path('crearProducto/',views.CrearProducto_view, name='crearproducto'),
+
+path('editarProveedor/',views.EditarProveedor_view, name='editarproveedor'),
+
+path('eliminarProveedor/<int:id_proveedor>',views.BorrarProveedor_view, name='eliminarproveedor'),
 ]

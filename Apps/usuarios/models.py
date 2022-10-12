@@ -27,6 +27,10 @@ class Empleado(models.Model):
     )
     creacion = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        verbose_name='usuarios'
+        verbose_name_plural='usuarios'
+
 
     def __str__(self):
         return '%s %s' % (self.nombre,self.apellido)

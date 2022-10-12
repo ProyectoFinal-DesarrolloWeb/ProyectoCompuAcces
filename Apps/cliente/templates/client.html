@@ -1,175 +1,156 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load widget_tweaks %}
 {% block contenido %}
-		<section class="full-width header-well">
-			<div class="full-width header-well-icon">
-				<i class="zmdi zmdi-accounts"></i>
-			</div>
 
-		</section>
-		<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
-			<div class="mdl-tabs__tab-bar">
-				<a href="#tabNewClient" class="mdl-tabs__tab is-active">NUEVO</a>
-				<a href="#tabListClient" class="mdl-tabs__tab">LISTA</a>
-			</div>
-			<div class="mdl-tabs__panel is-active" id="tabNewClient">
-				<div class="mdl-grid">
-					<div class="mdl-cell mdl-cell--12-col">
-						<div class="full-width panel mdl-shadow--2dp">
-							<div class="full-width panel-tittle bg-primary text-center tittles">
-								Nuevo Cliente
-							</div>
-							
-							
-							<div class="full-width panel-content">
+<link rel="stylesheet" href="{% static 'css/b4.css' %}">
+<script src="{% static 'js/b4.js' %}"></script>
+<script src="{% static 'js/main3.js' %}"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"
+	integrity="sha384-SlE991lGASHoBfWbelyBPLsUlwY1GwNDJo3jSJO04KZ33K2bwfV9YBauFfnzvynJ"
+	crossorigin="anonymous"></script>
 
-								<p class="text-center">
-									<a href="{% url 'cliente:crearcliente' %}">
-										<button
-											class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored bg-primary"
-											id="btn-addProvider">
-											<i class="zmdi zmdi-plus"></i>
+<section class="full-width header-well">
+	<div class="full-width header-well-icon">
+		<i class="zmdi zmdi-accounts"></i>
+	</div>
+
+</section>
+<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+
+	<div class="mdl-tabs__panel is-active" id="tabNewClient">
+		<div class="mdl-grid">
+			<div class="mdl-cell mdl-cell--12-col">
+				<div class="full-width panel mdl-shadow--2dp">
+					<div class="full-width panel-tittle bg-primary text-center tittles">
+						LISTADO DE CLIENTES
+					</div>
+					<br>
+
+					<div class="row">
+						<div class="col-md-12">
+
+
+							<div class="card card-body" style="overflow:scroll">
+								<div class="col-md-3 pb-2">
+									<a href="#AgregarPersonalModal" data-toggle="modal" data-dismiss="modal">
+										<button type="button" class="btn btn-success">
+											Agregar Cliente
+											<i class="fas fa-plus-circle"></i>
 										</button>
 									</a>
-								<div class="mdl-tooltip" for="btn-addProvider">Agregar Cliente</div>
-								</p>
-
-								<div class="contact-form ">
-									<form method="POST">
-										{% csrf_token %}
-									<div class="mdl-grid">
-										<div class="mdl-cell mdl-cell--12-col">
-									        <legend class="text-condensedLight"><i class="zmdi zmdi-border-color"></i> &nbsp; DATOS CLIENTE</legend><br>
-									    </div>
-
-										<div class="mdl-textfield__input">
-											<div class=" mdl-textfield mdl-js-textfield mdl-textfield--floating-label ">
-												Nombre {{form.nombre}}
-	
-											</div>
-										</div>
-
-									    <div class="mdl-textfield__input ">
-											<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-												Apellido {{form.apellido}}
-											</div>
-										</div>
-
-										<div class="mdl-textfield__input ">
-											<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-												No. Nit {{form.nit}}
-											</div>
-										</div>
-
-										<div class="mdl-textfield__input ">
-											<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-												Teléfono{{form.telefono}}
-											</div>
-										</div>
-								
-									</div>
-									<p class="text-center">
-										<button class="button55 " style='width:130px; height:45px'
-											type="submit">Guardar</button>
-									</p>
-								</form>
-							</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-
-			<div class="mdl-tabs__panel" id="tabListClient">
-				<div class="mdl-grid">
-					<div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--8-col-desktop mdl-cell--2-offset-desktop">
-						<div class="full-width panel mdl-shadow--2dp">
-							<div class="full-width panel-tittle bg-success text-center tittles">
-								Lista Clientes
-							</div>
-							<div class="full-width panel-content">
-								<form action="#">
-									<div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
-										<label class="mdl-button mdl-js-button mdl-button--icon" for="searchClient">
-											<i class="zmdi zmdi-search"></i>
-										</label>
-										<div class="mdl-textfield__expandable-holder">
-											<input class="mdl-textfield__input" type="text" id="searchClient">
-											<label class="mdl-textfield__label"></label>
-										</div>
-									</div>
-								</form>
-								<div class="mdl-list">
-									<div class="mdl-list__item mdl-list__item--two-line">
-										<span class="mdl-list__item-primary-content">
-											<i class="zmdi zmdi-account mdl-list__item-avatar"></i>
-											<span>1. Nombre Cliente</span>
-											<span class="mdl-list__item-sub-title">NIT</span>
-										</span>
-										<a class="mdl-list__item-secondary-action" href="#!"><i class="zmdi zmdi-more"></i></a>
-									</div>
-									<li class="full-width divider-menu-h"></li>
-									<div class="mdl-list__item mdl-list__item--two-line">
-										<span class="mdl-list__item-primary-content">
-											<i class="zmdi zmdi-account mdl-list__item-avatar"></i>
-											<span>2. Nombre Cliente</span>
-											<span class="mdl-list__item-sub-title">NIT</span>
-										</span>
-										<a class="mdl-list__item-secondary-action" href="#!"><i class="zmdi zmdi-more"></i></a>
-									</div>
-									<li class="full-width divider-menu-h"></li>
-									<div class="mdl-list__item mdl-list__item--two-line">
-										<span class="mdl-list__item-primary-content">
-											<i class="zmdi zmdi-account mdl-list__item-avatar"></i>
-											<span>3. Nombre Cliente</span>
-											<span class="mdl-list__item-sub-title">NIT</span>
-										</span>
-										<a class="mdl-list__item-secondary-action" href="#!"><i class="zmdi zmdi-more"></i></a>
-									</div>
-									<li class="full-width divider-menu-h"></li>
-									<div class="mdl-list__item mdl-list__item--two-line">
-										<span class="mdl-list__item-primary-content">
-											<i class="zmdi zmdi-account mdl-list__item-avatar"></i>
-											<span>4. Nombre Cliente</span>
-											<span class="mdl-list__item-sub-title">NIT</span>
-										</span>
-										<a class="mdl-list__item-secondary-action" href="#!"><i class="zmdi zmdi-more"></i></a>
-									</div>
-									<li class="full-width divider-menu-h"></li>
-									<div class="mdl-list__item mdl-list__item--two-line">
-										<span class="mdl-list__item-primary-content">
-											<i class="zmdi zmdi-account mdl-list__item-avatar"></i>
-											<span>5. Nombre Cliente</span>
-											<span class="mdl-list__item-sub-title">NIT</span>
-										</span>
-										<a class="mdl-list__item-secondary-action" href="#!"><i class="zmdi zmdi-more"></i></a>
-									</div>
-									<li class="full-width divider-menu-h"></li>
-									<div class="mdl-list__item mdl-list__item--two-line">
-										<span class="mdl-list__item-primary-content">
-											<i class="zmdi zmdi-account mdl-list__item-avatar"></i>
-											<span>6. Nombre Cliente</span>
-											<span class="mdl-list__item-sub-title">NIT</span>
-										</span>
-										<a class="mdl-list__item-secondary-action" href="#!"><i class="zmdi zmdi-more"></i></a>
-									</div>
-									<li class="full-width divider-menu-h"></li>
-									<div class="mdl-list__item mdl-list__item--two-line">
-										<span class="mdl-list__item-primary-content">
-											<i class="zmdi zmdi-account mdl-list__item-avatar"></i>
-											<span>7. Nombre Cliente</span>
-											<span class="mdl-list__item-sub-title">NIT</span>
-										</span>
-										<a class="mdl-list__item-secondary-action" href="#!"><i class="zmdi zmdi-more"></i></a>
-									</div>
 								</div>
+								<table class="table table-hover table-primary" id="myTable">
+									<thead>
+										<tr>
+											<th>ID</th>
+											<th>Nombre</th>
+											<th>Apellido</th>
+											<th>Nit</th>
+											<th>Telefono</th>
+										</tr>
+									</thead>
+									<tbody class="text-dark">
+										{% for i in clientes %}
+										<tr>
+											<td>{{i.id}}</td>
+											<td>{{i.nombre}}</td>
+											<td>{{i.apellido}}</td>
+											<td>{{i.nit}}</td>
+											<td>{{i.telefono}}</td>
+											<td>
+												<button
+													onclick="editarPersonal('{{i.id}}', '{{i.nombre}}', '{{i.apellido}}','{{i.nit}}', '{{i.telefono}}')"
+													class="btn btn-dark-outline btn-sm" data-toggle="modal"
+													href="#EditarPersonalModal"><img
+														src="{% static 'assets/img/editar.png' %}" alt="Error"
+														width="30"></button>
+											</td>
+											<td>
+												<a class="btn btn-danger"
+													href="{% url 'cliente:eliminarcliente' i.id %}">Eliminar</a>
+											</td>
+										</tr>
+										{% endfor %}
+									</tbody>
+								</table>
 							</div>
 						</div>
-						
 					</div>
 				</div>
+
 			</div>
 		</div>
-		{% endblock %}
- 
+	</div>
+</div>
+
+<div id="AgregarPersonalModal" class="modal" style="overflow: scroll;">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header bg-info">
+				<h5 class="modal-title text-light">Agregar nuevo cliente</h5>
+			</div>
+			<div class="modal-body bg-dark text-white">
+				<form method="POST" action="{% url 'cliente:crearcliente' %}" enctype="multipart/form-data">
+					{%csrf_token %}
+					{% for field in form_personal %}
+					<p>{{field.label}} <br>
+						{{field|add_class:"form-control text-dark"}}</p>
+					{% for error in field.errors %}
+					<p class="alarma">{{error}}</p>
+					{% endfor %}
+					{% endfor %}
+					{% for error in form.non_field_errors %}
+					<p class="alarma">{{error}}</p>
+					{% endfor %}
+			</div>
+			<div class="modal-footer bg-dark">
+				<button type="button" class="btn btn-danger" data-dismiss="modal">
+					Cancelar
+				</button>
+				<button type="submit" class="btn btn-success">
+					Agregar
+				</button>
+			</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<div id="EditarPersonalModal" class="modal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header bg-info">
+				<h5 class="modal-title text-light">Editar</h5>
+			</div>
+			<div class="modal-body bg-dark text-white">
+				<form method="POST" action="{% url 'cliente:editarcliente' %}" enctype="multipart/form-data">
+					{%csrf_token %}
+					<input type="hidden" id="id_personal_editar" name="id_personal_editar">
+					{% for field in form_editar %}
+					<p> {{field.label}} <br>
+						{{field|add_class:"form-control"}}</p>
+					{% for error in field.errors %}
+					<p class="alarma">{{error}}</p>
+					{% endfor %}
+					{% endfor %}
+					{% for error in form.non_field_errors %}
+					<p class="alarma">{{error}}</p>
+					{% endfor %}
+			</div>
+			<div class="modal-footer bg-dark text-white">
+				<button type="button" class="btn btn-danger" data-dismiss="modal">
+					Volver
+				</button>
+				<button type="submit" class="btn btn-success">
+					Aceptar
+				</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+{% endblock %}

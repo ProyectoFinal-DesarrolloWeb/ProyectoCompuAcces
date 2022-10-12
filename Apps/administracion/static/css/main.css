@@ -266,9 +266,6 @@ html, body{
 .bg-danger {
     background-color: #d9534f !important;
 }
-.bg-info {
-    background-color: #5bc0de !important;
-}
 /*=============Estilos login*/
 .login-wrap{
 	height: 100%;
@@ -953,4 +950,8 @@ html, body{
 	.contact-form input:focus, #contact-form select:focus{
 		border: 1px solid #2DAFC5;
 		background-color: #CCE8DF;
+	}
+
+	.prec{
+		font-size: 80px
 	}

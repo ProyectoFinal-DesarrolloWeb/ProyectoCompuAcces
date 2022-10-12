@@ -1,13 +1,45 @@
-from django.shortcuts import render
-from .forms import EmpleadoForm
+from django.shortcuts import render,redirect
+from django.contrib import messages
+from pyexpat.errors import messages
+from .forms import EmpleadoForm, EditarEmpleadoForm
+from .models import Empleado
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, CreateView
 
-class UsuariosView(TemplateView):
-    template_name='admin.html'
 
-class CrearEmpleadoView(CreateView):
-    template_name="admin.html"
-    form_class=EmpleadoForm
-    success_url= reverse_lazy('usuarios:usuariosapp')
-# Create your views here.
+def usuario_view(request):
+    usuarios = Empleado.objects.all()
+    form_empleado = EmpleadoForm()
+    form_editar=EditarEmpleadoForm()
+ 
+    context= {
+        'usuarios': usuarios,
+        'form_empleado' : form_empleado,
+        'form_editar':form_editar
+    }
+    return render(request,'admin.html',context)
+
+def CrearUsuario_view(request):
+    if request.POST:
+        form = EmpleadoForm(request.POST,request.FILES)
+        if form.is_valid:
+            try:
+                form.save()
+            except:
+                messages(request, "Error al guardar empleado")    
+                return redirect('usuarios:usuariosapp')
+    return redirect('usuarios:usuariosapp')
+
+def BorrarUsuario_view(request, id_usuario):
+    usuario=Empleado.objects.get(pk=id_usuario)
+    usuario.delete()
+    return redirect('usuarios:usuariosapp')
+
+def EditarUsuario_view(request):
+    if request.POST:
+        usuario = Empleado.objects.get(pk=request.POST.get('id_personal_editar'))
+        form=EditarEmpleadoForm(request.POST, request.FILES, instance=usuario)
+        if form.is_valid:           
+            form.save()           
+    return redirect('usuarios:usuariosapp')
+
