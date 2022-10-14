@@ -18,19 +18,20 @@ from django.urls import path,include
 from .views import proveedor_view, productos_view, EditarProveedor_view, BorrarProveedor_view
 from Apps.administracion import views
 from .views import CrearProveedor_view, CrearProducto_view
+from django.contrib.auth.decorators import login_required
 
 app_name='administracion'
 
 
 urlpatterns = [
-path('proveedor/', views.proveedor_view, name='proveedorapp'),
-path('productos/', views.productos_view, name='productosapp'),
+path('proveedor/', login_required(views.proveedor_view), name='proveedorapp'),
+path('productos/', login_required(views.productos_view), name='productosapp'),
 
 
-path('crearProveedor/',views.CrearProveedor_view, name='crearproveedor'),
-path('crearProducto/',views.CrearProducto_view, name='crearproducto'),
+path('crearProveedor/',login_required(views.CrearProveedor_view), name='crearproveedor'),
+path('crearProducto/',login_required(views.CrearProducto_view), name='crearproducto'),
 
-path('editarProveedor/',views.EditarProveedor_view, name='editarproveedor'),
+path('editarProveedor/',login_required(views.EditarProveedor_view), name='editarproveedor'),
 
-path('eliminarProveedor/<int:id_proveedor>',views.BorrarProveedor_view, name='eliminarproveedor'),
+path('eliminarProveedor/<int:id_proveedor>',login_required(views.BorrarProveedor_view), name='eliminarproveedor'),
 ]

@@ -17,12 +17,13 @@ from django.contrib import admin
 from django.urls import path,include
 from .views import clientes_view, CrearCliente_view, BorrarCliente_view, EditarCliente_view
 from Apps.cliente import views
+from django.contrib.auth.decorators import login_required
 
 app_name='cliente'
 
 urlpatterns = [
-path('', views.clientes_view, name='clientesapp'),
-path('crearCliente/',views.CrearCliente_view, name='crearcliente'),
-path('eliminarCliente/<int:id_cliente>',views.BorrarCliente_view, name='eliminarcliente'),
-path('editarCliente/',views.EditarCliente_view, name='editarcliente'),
+path('', login_required(views.clientes_view), name='clientesapp'),
+path('crearCliente/', login_required(views.CrearCliente_view), name='crearcliente'),
+path('eliminarCliente/<int:id_cliente>', login_required(views.BorrarCliente_view), name='eliminarcliente'),
+path('editarCliente/', login_required(views.EditarCliente_view), name='editarcliente'),
 ]   
