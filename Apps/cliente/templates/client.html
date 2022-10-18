@@ -4,6 +4,7 @@
 {% block contenido %}
 
 <link rel="stylesheet" href="{% static 'css/b4.css' %}">
+<link rel="stylesheet" href="{% static 'css/barrabusqueda.css' %}">
 <script src="{% static 'js/b4.js' %}"></script>
 <script src="{% static 'js/main3.js' %}"></script>
 <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"
@@ -45,6 +46,7 @@
 						
 
 								{% block buscador %}
+								<diV class="barra">
 								<form
 									class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"
 									method="GET">
@@ -60,6 +62,7 @@
 										</div>
 									</div>
 								</form>
+							</diV>
 								{% endblock buscador %}
 
 								<br>
