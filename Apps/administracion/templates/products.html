@@ -32,6 +32,24 @@
 	</a>
 </div>
 
+{% block buscador %}
+<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" method="GET">
+
+	{% csrf_token %}
+	<div class="input-group">
+		<input type="text" class="form-control bg-light border-0 small" placeholder="Buscar..." name="buscar"
+			value="{{ request.GET.buscar }}">
+		<div class="input-group-append">
+			<button class="btn btn-primary" type="submit">
+				<i class="fas fa-search fa-sm"></i>
+			</button>
+		</div>
+	</div>
+</form>
+{% endblock buscador %}
+
+<br><br>
+
 
 {% for i in productos %}
 <div class="mdl-card mdl-shadow--2dp full-width product-card card bg-secondary text-white" id="listProd">
@@ -45,7 +63,7 @@
 		<p class="card-text"><b> Cantidad: </b>{{i.cantidad}}</p>
 	</div>
 	<div class="mdl-card__actions mdl-card--border card bg-dark text-primary">
-		<dt>Precio: {{i.precio}}</dt>
+		<dt>Precio: Q {{i.precio}}</dt>
 	</div>
 </div>
 </div>
