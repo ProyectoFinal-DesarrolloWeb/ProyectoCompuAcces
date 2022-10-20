@@ -32,7 +32,8 @@
 
 
 							<div class="card card-body" style="overflow:scroll">
-
+								{% for group in request.user.groups.all %}
+								{% if group.name == 'Administrador' %}
 								<div class="col-md-3 pb-2">
 									<a href="#AgregarPersonalModal" data-toggle="modal" data-dismiss="modal">
 										<button type="button" class="btn btn-success">
@@ -41,6 +42,10 @@
 										</button>
 									</a>
 								</div>
+
+								{% endif %}
+							{% endfor %}
+							
 
 						
 
