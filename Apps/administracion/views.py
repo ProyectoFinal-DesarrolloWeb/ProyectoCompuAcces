@@ -15,6 +15,7 @@ def productos_view(request):
     busqueda = request.GET.get("buscar")
     productos = Producto.objects.all()
     form_personal = ProductoForm()
+    productos_count = Producto.objects.all().count()
 
     if busqueda:
         productos=Producto.objects.filter(
@@ -25,10 +26,10 @@ def productos_view(request):
 
     context= {
         'productos': productos,
-        'form_personal' : form_personal
+        'form_personal' : form_personal,
+        'productos_count': productos_count
     }
     return render(request,'products.html',context)
-    
 
 def CrearProducto_view(request):
     if request.POST:
@@ -41,17 +42,12 @@ def CrearProducto_view(request):
                 return redirect('administracion:productosapp')
     return redirect('administracion:productosapp')
 
-
-
-
-
-
-
 def proveedor_view(request):
     busqueda = request.GET.get("buscar")
     proveedores = Proveedor.objects.all()
     form_personal = ProveedorForm()
     form_editar=EditarProveedorForm()
+    proveedores_count = Proveedor.objects.all().count()
 
     if busqueda:
         proveedores=Proveedor.objects.filter(
@@ -63,7 +59,8 @@ def proveedor_view(request):
     context= {
         'proveedores': proveedores,
         'form_personal' : form_personal,
-        'form_editar':form_editar
+        'form_editar':form_editar,
+        'proveedores_count':proveedores_count
     }
     return render(request,'providers.html',context)
 

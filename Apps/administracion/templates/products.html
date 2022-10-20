@@ -6,7 +6,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link rel="stylesheet" href="{% static 'css/b4.css' %}">
 <script src="{% static 'js/b4.js' %}"></script>
-<link rel="stylesheet" href="{% static 'css/barraproductos.css' %}">
 <script src="{% static 'js/main4.js' %}"></script>
 <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"
 	integrity="sha384-SlE991lGASHoBfWbelyBPLsUlwY1GwNDJo3jSJO04KZ33K2bwfV9YBauFfnzvynJ"
@@ -15,27 +14,17 @@
 <link href="css\bootstrap.min.css" rel="stylesheet" media="screen">
 <link rel="stylesheet" href="{% static 'css/main.css' %}">
 <section class="full-width header-well">
-	<div class="full-width header-well-icon">
-		<i class="zmdi zmdi-washing-machine"></i>
-	</div>
-</section>
-{% block buscador %}
-<diV class="barra">
-<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" method="GET">
-
-	{% csrf_token %}
-	<div class="input-group">
-		<input type="text" class="form-control bg-light border-0 small" placeholder="Buscar..." name="buscar"
-			value="{{ request.GET.buscar }}">
-		<div class="input-group-append">
-			<button class="btn btn-primary" type="submit">
-				<i class="fas fa-search fa-sm"></i>
-			</button>
+	<article class="full-width tile">
+		<div class="tile-text">
+			<span class="text-condensedLight">
+				{{productos_count}}<br>
+				<small>Total de productos</small>
+			</span>
 		</div>
-	</div>
-	</diV>
-</form>
-{% endblock buscador %}
+		<i class="zmdi zmdi-washing-machine tile-icon"></i>
+	</article>
+</section>
+
 <div class="full-width panel-tittle bg-primary text-center tittles">
 	Nuevo Producto
 </div>
@@ -49,7 +38,21 @@
 	</a>
 </div>
 
+{% block buscador %}
+<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" method="GET">
 
+	{% csrf_token %}
+	<div class="input-group">
+		<input type="text" class="form-control bg-light border-0 small" placeholder="Buscar..." name="buscar"
+			value="{{ request.GET.buscar }}">
+		<div class="input-group-append">
+			<button class="btn btn-primary" type="submit">
+				<i class="fas fa-search fa-sm"></i>
+			</button>
+		</div>
+	</div>
+</form>
+{% endblock buscador %}
 
 <br><br>
 

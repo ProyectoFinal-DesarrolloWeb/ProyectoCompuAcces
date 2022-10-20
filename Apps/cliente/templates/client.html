@@ -4,7 +4,6 @@
 {% block contenido %}
 
 <link rel="stylesheet" href="{% static 'css/b4.css' %}">
-<link rel="stylesheet" href="{% static 'css/barrabusqueda.css' %}">
 <script src="{% static 'js/b4.js' %}"></script>
 <script src="{% static 'js/main3.js' %}"></script>
 <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"
@@ -12,10 +11,15 @@
 	crossorigin="anonymous"></script>
 
 <section class="full-width header-well">
-	<div class="full-width header-well-icon">
-		<i class="zmdi zmdi-accounts"></i>
-	</div>
-
+	<article class="full-width tile">
+		<div class="tile-text">
+			<span class="text-condensedLight">
+				{{clientes_count}}<br>
+				<small>Total de clientes</small>
+			</span>
+		</div>
+		<i class="zmdi zmdi-accounts tile-icon"></i>
+	</article>
 </section>
 <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
 
@@ -33,7 +37,8 @@
 
 
 							<div class="card card-body" style="overflow:scroll">
-
+								{% for group in request.user.groups.all %}
+								{% if group.name == 'Administrador' %}
 								<div class="col-md-3 pb-2">
 									<a href="#AgregarPersonalModal" data-toggle="modal" data-dismiss="modal">
 										<button type="button" class="btn btn-success">
@@ -43,10 +48,13 @@
 									</a>
 								</div>
 
+								{% endif %}
+							{% endfor %}
+							
+
 						
 
 								{% block buscador %}
-								<diV class="barra">
 								<form
 									class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"
 									method="GET">
@@ -62,7 +70,6 @@
 										</div>
 									</div>
 								</form>
-							</diV>
 								{% endblock buscador %}
 
 								<br>
