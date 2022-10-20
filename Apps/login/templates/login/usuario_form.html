@@ -1,28 +1,61 @@
 {% extends 'base.html'%}
-{% load static %}
+{% load static%}
 {% block contenido%}
-    
-<link rel="stylesheet" href="{% static 'css/b4.css' %}">
-<script src="{% static 'js/b4.js' %}"></script>
-<script src="{% static 'js/main3.js' %}"></script>
-
-<header class="masthead bg-light text-white text-center">
-    <div class="container">
-        <!-- Pagina de Estudiantes-->
-        <br>
-        <br>
-        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Crear Usuario</h2>
-        <br>
-        
-        <form action="" style="color:#312f2f; font-family:Verdana, Geneva, Tahoma, sans-serif; font-size: 0.40cm;" method="POST">
-                {% csrf_token %}
-                {{form.as_p}}     
-                <br><br><br>
-                <button class="btn btn-success" style='width:150px; height:45px' type="submit" >Guardar</button>
-        </form>
-        <br>
-        <br>
+<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+    <div class="mdl-tabs__tab-bar">
+        <a href="#tabNewProduct" class="mdl-tabs__tab is-active">Crear Usuario</a>
     </div>
-</header>
-
+    <div class="mdl-tabs__panel is-active" id="tabNewProduct">
+        <div class="contact-form ">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="mdl-grid">
+                    <div class="mdl-cell mdl-cell--12-col">
+                        <legend class="text-condensedLight"><i class="zmdi zmdi-border-color"></i>
+                            &nbsp; Datos de Usuario</legend><br>
+                    </div>
+                    <div class="mdl-textfield__input">
+                        <div class=" mdl-textfield mdl-js-textfield mdl-textfield--floating-label ">
+                            Usuario: {{form.username}}
+                        </div>
+                    </div>
+                    <div class="mdl-textfield__input">
+                        <div class=" mdl-textfield mdl-js-textfield mdl-textfield--floating-label ">
+                            Email: {{form.email}}
+                        </div>
+                    </div>
+                    <div class="mdl-textfield__input">
+                        <div class=" mdl-textfield mdl-js-textfield mdl-textfield--floating-label ">
+                            Nombre: {{form.first_name}}
+                        </div>
+                    </div>
+                    <div class="mdl-textfield__input">
+                        <div class=" mdl-textfield mdl-js-textfield mdl-textfield--floating-label ">
+                            Apellido: {{form.last_name}}
+                        </div>
+                    </div>
+                    <div class="mdl-textfield__input">
+                        <div class=" mdl-textfield mdl-js-textfield mdl-textfield--floating-label ">
+                            Contraseña: {{form.password1}}
+                        </div>
+                    </div>
+                    <div class="mdl-textfield__input">
+                        <div class=" mdl-textfield mdl-js-textfield mdl-textfield--floating-label ">
+                            Confirmar contraseña: {{form.password2}}
+                        </div>
+                    </div>
+                    <div class="mdl-textfield__input">
+                        <div class=" mdl-textfield mdl-js-textfield mdl-textfield--floating-label ">
+                            Grupos: {{form.groups}}
+                        </div>
+                    </div>
+                </div>
+                <p class="text-center">
+                    <button class="button55 " style='width:130px; height:45px' type="submit">Guardar</button>
+                </p>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
 {% endblock %}
