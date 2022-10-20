@@ -1,0 +1,28 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block contenido%}
+    
+<link rel="stylesheet" href="{% static 'css/b4.css' %}">
+<script src="{% static 'js/b4.js' %}"></script>
+<script src="{% static 'js/main3.js' %}"></script>
+
+<header class="masthead bg-light text-white text-center">
+    <div class="container">
+        <!-- Pagina de Estudiantes-->
+        <br>
+        <br>
+        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Crear Usuario</h2>
+        <br>
+        
+        <form action="" style="color:#312f2f; font-family:Verdana, Geneva, Tahoma, sans-serif; font-size: 0.40cm;" method="POST">
+                {% csrf_token %}
+                {{form.as_p}}     
+                <br><br><br>
+                <button class="btn btn-success" style='width:150px; height:45px' type="submit" >Guardar</button>
+        </form>
+        <br>
+        <br>
+    </div>
+</header>
+
+{% endblock %}
