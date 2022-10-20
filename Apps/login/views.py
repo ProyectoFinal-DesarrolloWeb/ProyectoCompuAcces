@@ -4,8 +4,9 @@ from django.urls import reverse_lazy
 from django.views.generic import TemplateView, CreateView
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate, logout
+from .forms import RegistroForm
 from django.contrib import messages
-
+from .models import Usuario
 # Create your views here.
 
 class loginview(TemplateView):
@@ -36,3 +37,8 @@ def Logout(request):
     logout(request)
     messages.success(request,("Ha cerrado sesion"))
     return redirect("login:loginapp")
+
+class RegistroView(CreateView):
+    model=Usuario
+    form_class=RegistroForm
+    success_url= reverse_lazy('login:homeapp')

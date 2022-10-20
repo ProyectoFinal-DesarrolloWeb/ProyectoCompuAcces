@@ -11,10 +11,15 @@
 	crossorigin="anonymous"></script>
 
 <section class="full-width header-well">
-	<div class="full-width header-well-icon">
-		<i class="zmdi zmdi-accounts"></i>
-	</div>
-
+	<article class="full-width tile">
+		<div class="tile-text">
+			<span class="text-condensedLight">
+				{{clientes_count}}<br>
+				<small>Total de clientes</small>
+			</span>
+		</div>
+		<i class="zmdi zmdi-accounts tile-icon"></i>
+	</article>
 </section>
 <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
 
@@ -32,8 +37,7 @@
 
 
 							<div class="card card-body" style="overflow:scroll">
-								{% for group in request.user.groups.all %}
-								{% if group.name == 'Administrador' %}
+					
 								<div class="col-md-3 pb-2">
 									<a href="#AgregarPersonalModal" data-toggle="modal" data-dismiss="modal">
 										<button type="button" class="btn btn-success">
@@ -43,9 +47,7 @@
 									</a>
 								</div>
 
-								{% endif %}
-							{% endfor %}
-							
+						
 
 						
 

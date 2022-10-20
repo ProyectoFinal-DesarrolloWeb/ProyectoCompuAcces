@@ -12,6 +12,7 @@ def clientes_view(request):
     clientes = Cliente.objects.all()
     form_personal = ClienteForm()
     form_editar=EditarClienteForm()
+    clientes_count = Cliente.objects.all().count()
 
     if busqueda:
         clientes=Cliente.objects.filter(
@@ -23,7 +24,8 @@ def clientes_view(request):
     context= {
         'clientes': clientes,
         'form_personal' : form_personal,
-        'form_editar': form_editar
+        'form_editar': form_editar,
+        'clientes_count' : clientes_count
     }
 
     

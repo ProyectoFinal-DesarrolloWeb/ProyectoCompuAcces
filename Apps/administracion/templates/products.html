@@ -14,15 +14,24 @@
 <link href="css\bootstrap.min.css" rel="stylesheet" media="screen">
 <link rel="stylesheet" href="{% static 'css/main.css' %}">
 <section class="full-width header-well">
-	<div class="full-width header-well-icon">
-		<i class="zmdi zmdi-washing-machine"></i>
-	</div>
+	<article class="full-width tile">
+		<div class="tile-text">
+			<span class="text-condensedLight">
+				{{productos_count}}<br>
+				<small>Total de productos</small>
+			</span>
+		</div>
+		<i class="zmdi zmdi-washing-machine tile-icon"></i>
+	</article>
 </section>
 
 <div class="full-width panel-tittle bg-primary text-center tittles">
 	Nuevo Producto
 </div>
 <br>
+
+{% for group in request.user.groups.all %}
+{% if group.name == 'Administrador' %}
 <div class="col-md-3 pb-2">
 	<a href="#AgregarPersonalModal" data-toggle="modal" data-dismiss="modal">
 		<button type="button" class="btn btn-success">
@@ -30,7 +39,10 @@
 			<i class="fas fa-plus-circle"></i>
 		</button>
 	</a>
-</div>
+</div>							
+{% endif %}
+{% endfor %}
+
 
 {% block buscador %}
 <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" method="GET">

@@ -13,6 +13,7 @@ def usuario_view(request):
     usuarios = Empleado.objects.all()
     form_empleado = EmpleadoForm()
     form_editar=EditarEmpleadoForm()
+    empleados_count = Empleado.objects.all().count()
  
     if busqueda:
         usuarios=Empleado.objects.filter(
@@ -23,7 +24,8 @@ def usuario_view(request):
     context= {
         'usuarios': usuarios,
         'form_empleado' : form_empleado,
-        'form_editar':form_editar
+        'form_editar':form_editar,
+        'empleados_count':empleados_count
     }
     return render(request,'admin.html',context)
 
