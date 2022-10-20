@@ -15,6 +15,5 @@ class RegistroForm(UserCreationForm):
             'first_name',
             'last_name',
             'password1',
-            'password2',
-            'groups',
+            'password2'
         )
