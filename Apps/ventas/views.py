@@ -14,6 +14,7 @@ class ListarVentasView(ListView):
     template_name="sales.html"
     model = Venta
 
+
     # def get_queryset(self):
         # return Venta.objects.all()
 
