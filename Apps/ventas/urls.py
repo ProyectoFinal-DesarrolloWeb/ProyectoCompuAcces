@@ -15,12 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from Apps.ventas.views import CrearVentaView, ListarVentasView, CrearCotizacionView
+from . import views
 
 app_name='ventas'
 
 urlpatterns = [
-path('crearVenta/',CrearVentaView.as_view() , name='crearVenta'),
-path('listarVenta/',ListarVentasView.as_view(), name='listarVentas'),
-path('crearCotizacion/',CrearCotizacionView.as_view(), name='crearCotizacion')
+path('carrito/',views.cart , name='cart'),
+# path('listarVenta/',ListarVentasView.as_view(), name='listarVentas'),
+# path('crearCotizacion/',CrearCotizacionView.as_view(), name='crearCotizacion')
 ]
