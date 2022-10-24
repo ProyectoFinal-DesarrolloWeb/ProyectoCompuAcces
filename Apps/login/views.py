@@ -41,4 +41,4 @@ def Logout(request):
 class RegistroView(CreateView):
     model=Usuario
     form_class=RegistroForm
-    success_url= reverse_lazy('login:homeapp')
+    success_url= reverse_lazy('login:registro')
