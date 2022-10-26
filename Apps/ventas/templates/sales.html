@@ -1,0 +1,44 @@
+{% extends 'base.html'%}
+{% load static%}
+{% block contenido%}
+	<section class="full-width header-well">
+			<div class="full-width header-well-icon">
+				<i class="zmdi zmdi-shopping-cart"></i>
+			</div>
+			
+		</section>
+		<div class="full-width divider-menu-h"></div>
+		<div class="mdl-grid">
+			<div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop">
+				<div class="table-responsive">
+					<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp full-width table-responsive">
+						<thead>
+							<tr>								
+								<th>ID</th>
+								<th>Producto</th>
+								<th>Empleado</th>
+								<th>Total</th>
+								<th class="mdl-data-table__cell--non-numeric">Fecha de compra</th>
+								
+							</tr>
+						</thead>
+						<tbody>
+							{% for Venta in object_list %}
+							<tr>
+								<td>{{Venta.id}}</td>
+								<td>
+									{%for producto in Venta.producto.all%}
+									{{producto}}
+									{%endfor%}
+								</td>
+								<td>{{Venta.empleado}}</td>
+								<td>{{Venta.total}}</td>
+								<td class="mdl-data-table__cell--non-numeric">{{Venta.fecha}}</td>
+							</tr>
+							{%endfor%}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		{% endblock %}
