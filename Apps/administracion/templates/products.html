@@ -26,7 +26,7 @@
 </section>
 
 <div class="full-width panel-tittle bg-primary text-center tittles">
-	Nuevo Producto
+	PRODUCTOS
 </div>
 <br>
 
@@ -64,26 +64,27 @@
 
 
 {% for i in productos %}
-<div>
-	<div class="mdl-card mdl-shadow--2dp full-width product-card card bg-secondary text-white" id="listProd">
-		<div class="mdl-card__title">
-			<img src="{{i.icono.url}}" style="height: 200px; width: 200px;" alt="...">
-		</div>
-		<div class="card-body">
-			<p class="card-text"><b> Nombre: </b>{{i.nombre}}</p>
-			<p class="card-text"><b> Descripción: </b>{{i.descripcion}}</p>
-			<p class="card-text"><b> Categoría: </b>{{i.categoria}}</p>
-			<p class="card-text"><b> Cantidad: </b>{{i.cantidad}}</p>
-		</div>
-		<div class="mdl-card__actions mdl-card--border card bg-dark text-primary">
-			<dt>Precio: Q {{i.precio}}</dt>
-		</div>
-		
+<div class="mdl-card mdl-shadow--2dp full-width product-card card bg-secondary text-white" id="listProd">
+	<div class="mdl-card__title">
+		<img src="{{i.icono.url}}" style="height: 200px; width: 200px;" alt="...">
 	</div>
-	<div class="card-body" >
-		{% include 'add.html' %}
+	<div class="card-body">
+		<p class="card-text"><b> Nombre: </b>{{i.nombre}}</p>
+		<p class="card-text"><b> Descripción: </b>{{i.descripcion}}</p>
+		<p class="card-text"><b> Categoría: </b>{{i.categoria}}</p>
+		<p class="card-text"><b> Cantidad: </b>{{i.cantidad}}</p>
+	</div>
+	<div class="mdl-card__actions mdl-card--border card bg-dark text-warning">
+		<dt>Precio: Q {{i.precio}}</dt>
+		<div class="mdl-card__actions mdl-card--border card bg-dark">
+			{% include 'add.html' %}
+		</div>
 	</div>
 </div>
+</div>
+</div>
+		
+
 
 {% endfor %}
 

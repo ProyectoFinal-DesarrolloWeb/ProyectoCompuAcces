@@ -82,9 +82,9 @@ WSGI_APPLICATION = 'SistemaCompuAcces.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'CompuAccess',
-        'USER': 'SaraJr',
-        'PASSWORD': '1234',
+        'NAME': 'compuacces',
+        'USER': 'root',
+        'PASSWORD': 'admin',
         'HOST':'localhost',
         'PORT':'',
 
