@@ -19,3 +19,6 @@ def getOrCreateCart(request):
     request.session['cart_id'] = cart.cart_id #actualizar la sesion
     
     return cart
+
+def destroyCart(request):
+    request.session['cart_id'] = None

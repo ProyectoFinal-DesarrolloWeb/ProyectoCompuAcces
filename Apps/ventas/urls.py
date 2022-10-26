@@ -23,6 +23,6 @@ urlpatterns = [
 path('carrito/',views.cart , name='cart'),
 path('carrito/agregar/',views.add , name='add'),
 path('carrito/eliminar/',views.remove , name='remove'),
-# path('listarVenta/',ListarVentasView.as_view(), name='listarVentas'),
-# path('crearCotizacion/',CrearCotizacionView.as_view(), name='crearCotizacion')
+path('listarVenta/', views.VentasListView.as_view(), name='sales'),
+path('completar/',views.complete, name='complete')
 ]

@@ -2,8 +2,8 @@ from django.shortcuts import redirect, render
 from django.http import HttpRequest, HttpResponse
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, TemplateView
-from .models import CartProducts
-from .utils import getOrCreateCart
+from .models import CartProducts, Venta
+from .utils import getOrCreateCart, destroyCart
 from .forms import VentaForm
 from Apps.administracion.models import Producto
 
@@ -32,3 +32,18 @@ def remove(request):
     cart.producto.remove(product)
 
     return redirect('ventas:cart')
+
+def complete(request):
+    cart = getOrCreateCart(request)
+    productos = Producto.objects.filter(nombre = cart.producto)
+    venta = Venta.objects.create(empleado= cart.empleado, fecha = cart.fecha, total = cart.total)
+
+    venta.producto.set(cart.producto.all())
+    
+    destroyCart(request)
+
+    return redirect('ventas:sales')
+
+class VentasListView(ListView):
+    template_name='sales.html'
+    model = Venta
