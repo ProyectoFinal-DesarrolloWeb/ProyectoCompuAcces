@@ -1,41 +1,34 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.http import HttpRequest, HttpResponse
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, TemplateView
-from .models import Cart 
+from .models import CartProducts
 from .utils import getOrCreateCart
 from .forms import VentaForm
+from Apps.administracion.models import Producto
+
 
 def cart(request): 
     cart = getOrCreateCart(request)
-    form = VentaForm
-    return render(request, 'ventas.html',{'form': form})
+    
+    return render(request, 'ventas.html',{'cart': cart})
 
+def add(request):
+    cart = getOrCreateCart(request)
+    product = Producto.objects.get(pk = request.POST.get('product_id'))
+    quantity = int(request.POST.get('quantity', 1))
 
-# from Apps.ventas.forms import VentaForm , CotizacionForm
-# from Apps.ventas.models import Venta
+    cart_product = CartProducts.objects.createOrUpdateQuantity(cart=cart, product=product , quantity=quantity)
 
-# class CrearVentaView(CreateView):
-#     template_name='ventas.html'
-#     success_url= reverse_lazy('ventas:crearVenta')
-#     form_class=VentaForm
+    # cart.producto.add(product, through_defaults={
+    #     'quantity':quantity
+    # })
 
-# class ListarVentasView(ListView):
-#     template_name="sales.html"
-#     model = Venta
+    return render(request, 'agregar.html', {'product': product}) 
 
+def remove(request):
+    cart = getOrCreateCart(request)
+    product = Producto.objects.get(pk = request.POST.get('product_id'))
+    cart.producto.remove(product)
 
-# class CotizacionView(TemplateView):
-#     template_name='cotizacion.html'
-
-
-# class CrearCotizacionView(CreateView):
-#     template_name="cotizacion.html"
-#     form_class=CotizacionForm
-#     success_url= reverse_lazy('ventas:crearCotizacion')
-
-    # def get_queryset(self):
-        # return Venta.objects.all()
-
-    # form_class=EmpleadoForm
-    # success_url= reverse_lazy('usuarios:usuariosapp')
+    return redirect('ventas:cart')

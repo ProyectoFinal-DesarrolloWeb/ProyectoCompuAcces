@@ -8,71 +8,76 @@
 
 </section>
 <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
-	<div class="mdl-tabs__tab-bar">
-		<a href="#tabNewProduct" class="mdl-tabs__tab is-active">NUEVA</a>
-	</div>
-	<div class="mdl-tabs__panel is-active" id="tabNewProduct">
-		<div class="mdl-grid">
-			<div class="mdl-cell mdl-cell--12-col">
-				<div class="full-width panel mdl-shadow--2dp">
-					<div class="full-width panel-tittle bg-primary text-center tittles">
-						Nueva Venta
+	{%if cart.producto.exists %}
+		<div class="col-8">
+			<table class="table">
+				<thead>
+					<tr>
+						<th scope="col"></th>
+						<th scope="col"></th>
+						<th scope="col"></th>
+						<th scope="col">Cantidad</th>
+						<th scope="col">Precio</th>
+						
+					</tr>
+				</thead>
+				<tbody>
+					{%for cp in cart.products_related %}
+						{% with product=cp.product %}
+							<tr>
+								<th>
+									{{forloop.counter}}
+								</th>
+								<th>
+									{%if product.icono%}
+									<img src="{{product.icono.url}}" alt="Imagen del producto" width="60" height="60">
+									{%endif%}
+								</th>
+								<th>
+									<a href="{%url 'administracion:productosapp' %}">{{product.nombre}}</a>
+									{%include 'snippetRemove.html'%}
+								</th>
+								<th>
+									{{cp.quantity}}
+								</th>
+								<th>
+									<span class="font-weight-bold text-danger">{{product.precio}}</span>
+								</th>
+
+							</tr>
+						{%endwith%}
+					{%endfor%}
+				</tbody>
+			</table>
+
+		</div>
+		<div class="col">
+			<div class="card">
+				<div class="card-body">
+					<div class="font-weight-bold">
+						Total({{cart.producto.count}}): <span class="text-danger">Q{{cart.total}}</span>
 					</div>
-					<div class="full-width panel-content">
-						<p class="text-center">
-							<a href="{% url 'ventas:cart' %}">
-								<button
-									class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored bg-primary"
-									id="btn-addProvider">
-									<i class="zmdi zmdi-plus"></i>
-								</button>
-							</a>
-						<div class="mdl-tooltip" for="btn-addProvider">Agregar Venta</div>
-						</p>
-
-						<div class="contact-form ">
-							<form method="POST">
-
-								{% csrf_token %}
-
-								<div class="mdl-grid">
-									<div class="mdl-cell mdl-cell--12-col">
-										<legend class="text-condensedLight"><i class="zmdi zmdi-border-color"></i>
-											&nbsp; DATOS VENTA</legend><br>
-									</div>
-
-									<div class="mdl-textfield__input">
-										<div class=" mdl-textfield mdl-js-textfield mdl-textfield--floating-label ">
-											Empleado {{form.empleado}}
-										</div>
-									</div>
-
-									<div class="mdl-textfield__input">
-										<div class=" mdl-textfield mdl-js-textfield mdl-textfield--floating-label ">
-											Producto {{form.producto}}
-										</div>
-									</div>
-
-									<div class="mdl-textfield__input">
-										<div class=" mdl-textfield mdl-js-textfield mdl-textfield--floating-label ">
-											
-											Total Q {{form.total}}
-											
-										</div>
-									</div>
-								</div>
-
-								<p class="text-center">
-									<button class="button55 " style='width:130px; height:45px'
-										type="submit">Guardar</button>
-								</p>
-
-							</form>
-						</div>
+					
+    				<div class="mt-2">
+						<a href="{% url 'administracion:productosapp' %}">Seguir vendiendo</a>
 					</div>
+
+					<div class="mt-2">
+						<a href="#" class="btn btn-warning">Realizar venta</a>
+					</div>
+
 				</div>
 			</div>
 		</div>
+	{%else%}
+		<div class="col">
+			<p class="h3">
+				Tu carrito de ventas esta vacío
+			</p>
+			<a href="{% url 'administracion:productosapp' %}">Seleccione productos!</a>
 
-	</div>
-	{% endblock %}
+		</div>	
+	{%endif%}
+	
+</div>
+{% endblock %}
