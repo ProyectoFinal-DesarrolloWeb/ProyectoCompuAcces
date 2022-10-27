@@ -24,6 +24,12 @@ def add(request):
     #     'quantity':quantity
     # })
 
+    # return render(request, 'agregar.html', {'product': product}) 
+    return render(request, 'ventas.html',{'cart': cart})
+
+def getOne(request):
+    product = Producto.objects.get(pk = request.POST.get('product_id'))
+
     return render(request, 'agregar.html', {'product': product}) 
 
 def remove(request):
