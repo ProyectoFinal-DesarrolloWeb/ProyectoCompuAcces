@@ -15,6 +15,7 @@ def productos_view(request):
     busqueda = request.GET.get("buscar")
     productos = Producto.objects.all()
     form_personal = ProductoForm()
+    form_editar= EditarProductoForm()
     productos_count = Producto.objects.all().count()
 
     if busqueda:
@@ -27,6 +28,7 @@ def productos_view(request):
     context= {
         'productos': productos,
         'form_personal' : form_personal,
+        'form_editar':form_editar,
         'productos_count': productos_count
     }
     return render(request,'products.html',context)
