@@ -6,7 +6,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link rel="stylesheet" href="{% static 'css/b4.css' %}">
 <script src="{% static 'js/b4.js' %}"></script>
-<script src="{% static 'js/main4.js' %}"></script>
+<script src="{% static 'js/main5.js' %}"></script>
 <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"
 	integrity="sha384-SlE991lGASHoBfWbelyBPLsUlwY1GwNDJo3jSJO04KZ33K2bwfV9YBauFfnzvynJ"
 	crossorigin="anonymous"></script>
@@ -39,7 +39,7 @@
 			<i class="fas fa-plus-circle"></i>
 		</button>
 	</a>
-</div>							
+</div>
 {% endif %}
 {% endfor %}
 
@@ -65,6 +65,20 @@
 
 {% for i in productos %}
 <div class="mdl-card mdl-shadow--2dp full-width product-card card bg-secondary text-white" id="listProd">
+
+	{% for group in request.user.groups.all %}
+	{% if group.name == 'Administrador' %}
+	<div class="btn-group btn-group-sm text-center" role="group" aria-label="Small button group">
+		<button onclick="editarCorrectivo('{{i.id}}', '{{i.nombre}}', '{{i.descripcion}}','{{i.categoria}}', '{{i.cantidad}}','{{i.precio}}')"
+		class="btn btn-outline-dark" data-toggle="modal"
+		href="#EditarPersonalModal">Editar</button>
+
+		<a class="btn btn-outline-dark" href="{% url 'administracion:eliminarproducto' i.id %}">Eliminar</a>
+	</div>
+	{% endif %}
+	{% endfor %}
+
+	
 	<div class="mdl-card__title">
 		<img src="{{i.icono.url}}" style="height: 200px; width: 200px;" alt="...">
 	</div>
@@ -80,10 +94,13 @@
 			{% include 'add.html' %}
 		</div>
 	</div>
+	
+
+
 </div>
 </div>
 </div>
-		
+
 
 
 {% endfor %}
@@ -118,6 +135,41 @@
 				</button>
 			</div>
 			</form>
+		</div>
+	</div>
+</div>
+
+
+<div id="EditarPersonalModal" class="modal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header bg-info">
+				<h5 class="modal-title text-light">Editar</h5>
+			</div>
+			<div class="modal-body bg-dark text-white">
+				<form method="POST" action="{% url 'administracion:editarproducto' %}" enctype="multipart/form-data">
+					{%csrf_token %}
+					<input type="hidden" id="id_personal_editar" name="id_personal_editar">
+					{% for field in form_editar %}
+					<p> {{field.label}} <br>
+						{{field|add_class:"form-control"}}</p>
+					{% for error in field.errors %}
+					<p class="alarma">{{error}}</p>
+					{% endfor %}
+					{% endfor %}
+					{% for error in form.non_field_errors %}
+					<p class="alarma">{{error}}</p>
+					{% endfor %}
+			</div>
+			<div class="modal-footer bg-dark text-white">
+				<button type="button" class="btn btn-danger" data-dismiss="modal">
+					Volver
+				</button>
+				<button type="submit" class="btn btn-success">
+					Aceptar
+				</button>
+				</form>
+			</div>
 		</div>
 	</div>
 </div>

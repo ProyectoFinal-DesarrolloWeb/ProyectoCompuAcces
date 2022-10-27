@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from pyexpat.errors import messages
-from .forms import ProveedorForm, ProductoForm, EditarProveedorForm
+from .forms import ProveedorForm, ProductoForm, EditarProveedorForm, EditarProductoForm
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, CreateView
 from django.http import HttpRequest
@@ -89,3 +89,16 @@ def EditarProveedor_view(request):
         if form.is_valid:           
             form.save()           
     return redirect('administracion:proveedorapp')
+
+def BorrarProducto_view(request, id_producto):
+    producto=Producto.objects.get(pk=id_producto)
+    producto.delete()
+    return redirect('administracion:productosapp')
+
+def EditarProducto_view(request):
+    if request.POST:
+        producto = Producto.objects.get(pk=request.POST.get('id_personal_editar'))
+        form=EditarProductoForm(request.POST, request.FILES, instance=producto)
+        if form.is_valid:           
+            form.save()           
+    return redirect('administracion:productosapp')

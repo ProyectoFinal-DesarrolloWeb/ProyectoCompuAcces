@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from .views import proveedor_view, productos_view, EditarProveedor_view, BorrarProveedor_view
+from .views import proveedor_view, productos_view, EditarProveedor_view, BorrarProveedor_view, EditarProducto_view,BorrarProducto_view
 from Apps.administracion import views
 from .views import CrearProveedor_view, CrearProducto_view
 from django.contrib.auth.decorators import login_required
@@ -32,6 +32,8 @@ path('crearProveedor/',login_required(views.CrearProveedor_view), name='crearpro
 path('crearProducto/',login_required(views.CrearProducto_view), name='crearproducto'),
 
 path('editarProveedor/',login_required(views.EditarProveedor_view), name='editarproveedor'),
-
 path('eliminarProveedor/<int:id_proveedor>',login_required(views.BorrarProveedor_view), name='eliminarproveedor'),
+
+path('editarProducto/',login_required(views.EditarProducto_view), name='editarproducto'),
+path('eliminarProducto/<int:id_producto>',login_required(views.BorrarProducto_view), name='eliminarproducto'),
 ]
