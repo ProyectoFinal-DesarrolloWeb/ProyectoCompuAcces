@@ -35,10 +35,10 @@
 									<thead>
 										<tr>
 											<th>ID</th>
+											<th class="mdl-data-table__cell--non-numeric">Fecha de compra</th>
 											<th>Producto</th>
 											<th>Empleado</th>
-											<th>Total</th>
-											<th class="mdl-data-table__cell--non-numeric">Fecha de compra</th>
+											<th>Total</th>	
 											<th>Agregar Cliente</th>
 											<th>Detalles</th>
 										</tr>
@@ -47,6 +47,7 @@
 										{% for Venta in object_list %}
 										<tr>
 											<td>{{Venta.id}}</td>
+											<td class="mdl-data-table__cell--non-numeric">{{Venta.fecha}}</td>
 											<td>
 												{%for producto in Venta.producto.all%}
 												{{producto}}
@@ -54,10 +55,9 @@
 												{%endfor%}
 											</td>
 											<td>{{Venta.empleado}}</td>
-											<td>{{Venta.total}}</td>
-											<td class="mdl-data-table__cell--non-numeric">{{Venta.fecha}}</td>
-											<td><a href="{% url 'ventas:agregarcl' Venta.id %}" class="btn btn-primary btn-sm">Agregar Cliente</a></td>
-											<td><a href="{% url 'ventas:detallesVenta' Venta.id%}" class="btn btn-dark btn-sm">Ver</a>
+											<td>{{Venta.total}}</td>			
+											<td><a href="{% url 'ventas:agregarcl' Venta.id %}" class="btn btn-danger btn-sm">Agregar Cliente</a></td>
+											<td><a href="{% url 'ventas:detallesVenta' Venta.id%}" class="btn btn-primary btn-sm">Ver</a>
 										</tr>
 										{%endfor%}
 									</tbody>
