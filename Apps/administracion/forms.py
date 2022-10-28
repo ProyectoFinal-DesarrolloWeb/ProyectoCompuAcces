@@ -48,11 +48,10 @@ class ProductoForm(forms.ModelForm):
 class EditarProductoForm(forms.ModelForm):    
     class Meta:
         model=Producto
-        fields = ('nombre','descripcion','categoria','cantidad','precio')
+        fields = ('nombre','descripcion','cantidad','precio')
         labels={
             'nombre' : 'Nombre: ',
             'descripcion' : 'Descripcion: ',
-            'categoria' : 'Categoria: ',
             'cantidad' : 'Cantidad: ',
             'precio' : 'Precio: '
 
@@ -60,7 +59,6 @@ class EditarProductoForm(forms.ModelForm):
         widgets={
             'nombre' : forms.TextInput(attrs={'type':'text','id':'nombre_editar'}),
             'descripcion' : forms.TextInput(attrs={'id':'descripcion_editar'}),
-            'categoria' : forms.TextInput(attrs={'id':'categoria_editar'}),
-            'cantidad' : forms.TextInput(attrs={'id':'cantidad_editar'}),
+            'cantidad' : forms.NumberInput(attrs={'id':'cantidad_editar'}),
             'precio': forms.TextInput(attrs={'id':'precio_editar'}),
         }

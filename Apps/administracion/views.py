@@ -88,7 +88,7 @@ def EditarProveedor_view(request):
     if request.POST:
         proveedor = Proveedor.objects.get(pk=request.POST.get('id_personal_editar'))
         form=EditarProveedorForm(request.POST, request.FILES, instance=proveedor)
-        if form.is_valid:           
+        if form.is_valid():           
             form.save()           
     return redirect('administracion:proveedorapp')
 
@@ -101,6 +101,6 @@ def EditarProducto_view(request):
     if request.POST:
         producto = Producto.objects.get(pk=request.POST.get('id_personal_editar'))
         form=EditarProductoForm(request.POST, request.FILES, instance=producto)
-        if form.is_valid:           
-            form.save()           
+        if form.is_valid():           
+            form.save()          
     return redirect('administracion:productosapp')

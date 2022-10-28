@@ -57,11 +57,10 @@ function editarPreventivo(id, fecha, contacto, piezas, actividades, comentarios,
   document.getElementById("total_editar").value = total;
 }
 
-function editarCorrectivo(id, nombre, descripcion, categoria,cantidad,precio) {
+function editarCorrectivo(id, nombre, descripcion, cantidad,precio) {
   document.getElementById("id_personal_editar").value = id;
   document.getElementById("nombre_editar").value = nombre;
   document.getElementById("descripcion_editar").value = descripcion;
-  document.getElementById("categoria_editar").value = categoria;
   document.getElementById("cantidad_editar").value = cantidad;
   document.getElementById("precio_editar").value = precio;
 }

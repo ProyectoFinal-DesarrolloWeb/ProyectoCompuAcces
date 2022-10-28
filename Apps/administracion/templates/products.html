@@ -69,7 +69,7 @@
 	{% for group in request.user.groups.all %}
 	{% if group.name == 'Administrador' %}
 	<div class="btn-group btn-group-sm text-center" role="group" aria-label="Small button group">
-		<button onclick="editarCorrectivo('{{i.id}}', '{{i.nombre}}', '{{i.descripcion}}','{{i.categoria}}', '{{i.cantidad}}','{{i.precio}}')"
+		<button onclick="editarCorrectivo('{{i.id}}', '{{i.nombre}}', '{{i.descripcion}}','{{i.cantidad}}','{{i.precio}}')"
 		class="btn btn-outline-dark" data-toggle="modal"
 		href="#EditarPersonalModal">Editar</button>
 
@@ -173,7 +173,6 @@
 		</div>
 	</div>
 </div>
-
 
 
 {% endblock %}
