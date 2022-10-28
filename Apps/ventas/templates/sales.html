@@ -39,7 +39,8 @@
 											<th>Empleado</th>
 											<th>Total</th>
 											<th class="mdl-data-table__cell--non-numeric">Fecha de compra</th>
-					
+											<th>Agregar Cliente</th>
+											<th>Detalles</th>
 										</tr>
 									</thead>
 									<tbody class="text-dark">
@@ -55,6 +56,8 @@
 											<td>{{Venta.empleado}}</td>
 											<td>{{Venta.total}}</td>
 											<td class="mdl-data-table__cell--non-numeric">{{Venta.fecha}}</td>
+											<td><a href="{% url 'ventas:agregarcl' Venta.id %}" class="btn btn-primary btn-sm">Agregar Cliente</a></td>
+											<td><a href="{% url 'ventas:detallesVenta' Venta.id%}" class="btn btn-dark btn-sm">Ver</a>
 										</tr>
 										{%endfor%}
 									</tbody>

@@ -1,6 +1,7 @@
 import uuid
 from django.db import models
 from Apps.administracion.models import Producto
+from Apps.cliente.models import Cliente
 from django.contrib.auth.models import User
 from django.db.models.signals import m2m_changed, pre_save, post_save
 # Create your models here.
@@ -8,13 +9,16 @@ from django.db.models.signals import m2m_changed, pre_save, post_save
 
 class Venta(models.Model):
     empleado = models.ForeignKey(User, null=True, blank=True ,on_delete=models.CASCADE)
+    cliente = models.ForeignKey(Cliente, null=True, blank=True ,on_delete=models.CASCADE)
     producto = models.ManyToManyField(Producto)
     fecha = models.DateField(auto_now_add=True)
     total = models.DecimalField(default=0.0,max_digits=8, decimal_places=2)
 
+
 class Cart(models.Model):
     cart_id = models.CharField(max_length= 100, null= False, blank = False, unique = True)
     empleado = models.ForeignKey(User, null=True, blank=True ,on_delete=models.CASCADE)
+    cliente = models.ForeignKey(Cliente, null=True, blank=True ,on_delete=models.CASCADE)
     producto = models.ManyToManyField(Producto, through='CartProducts')
     fecha = models.DateField(auto_now_add=True)
     total = models.DecimalField(default=0.0,max_digits=8, decimal_places=2)
@@ -35,15 +39,6 @@ class Cart(models.Model):
 def set_cart_id(sender, instance, *arg, **kwargs):
     if not instance.cart_id:
         instance.cart_id = str(uuid.uuid4())       
-
-class Cotizacion(models.Model):
-    empleado = models.ForeignKey(User,on_delete=models.CASCADE)
-    producto = models.ManyToManyField(Producto)
-    fecha = models.DateField(auto_now_add=True)
-    total = models.DecimalField(max_digits=20, decimal_places=2)
-
-    def __str__(self):
-        return '%s %s' % (self.fecha,self.total)
 
 class CartProductsManager(models.Manager):
 

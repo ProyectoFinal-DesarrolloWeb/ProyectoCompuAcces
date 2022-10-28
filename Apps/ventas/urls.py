@@ -21,10 +21,12 @@ from django.contrib.auth.decorators import login_required
 app_name='ventas'
 
 urlpatterns = [
+path('agregarcliente/ <int:pk>/',login_required(views.AgregarCliente.as_view()), name='agregarcl'),
 path('carrito/',login_required(views.cart) , name='cart'),
 path('carrito/agregar/',login_required(views.add) , name='add'),
 path('carrito/eliminar/',login_required(views.remove), name='remove'),
 path('listarVenta/', login_required(views.VentasListView.as_view()), name='sales'),
 path('completar/',login_required(views.complete), name='complete'),
-path('producto/',login_required(views.getOne), name='getOne')
+path('producto/',login_required(views.getOne), name='getOne'),
+path('detallesVenta/ <int:pk>/',login_required(views.detallesVenta.as_view()), name='detallesVenta'),
 ]

@@ -1,0 +1,21 @@
+{% extends 'base.html'%} 
+{% block contenido %}
+<div class="card text-bg-primary mb-3" style="max-width: 18rem;">
+    <div class="card-body">
+        <b>Producto:</b>
+        <br>
+        {%for producto in object.producto.all%}
+        {{producto}}
+        <br>
+        {%endfor%}  
+        <br>
+      <p class="card-text"><b>Empleado: </b>{{ object.empleado }}</p>
+      <p class="card-text"><b>Total: </b>{{ object.total}}</p>
+      <p class="card-text"><b>Fecha de compra: </b>{{ object.fecha}}</p>
+      <p class="card-text"><b>Cliente: </b>{{ object.cliente }}</p>        
+    </div>
+  </div>
+<h1>Listado ventas</h1>
+<td><a href="{% url 'ventas:sales' %}" class="btn btn-primary btn-sm">Regresar</a>
+
+{% endblock %}

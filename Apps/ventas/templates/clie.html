@@ -1,0 +1,10 @@
+{% extends 'base.html'%}
+{% load static%}
+{% block contenido%}
+<form style="color:#0f0202; font-family:Verdana, Geneva, Tahoma, sans-serif; font-size: 0.40cm;" method="POST">
+    {% csrf_token %}
+    Cliente {{form.cliente}}
+    <br><br><br>
+    <button class="text-uppercase font-weight-bold bg-primary rounded" style='width:130px; height:45px' type="submit" href="{% url 'ventas:sales' %}"  >Guardar</button>
+</form>
+{% endblock %}
