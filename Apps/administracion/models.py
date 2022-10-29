@@ -5,7 +5,7 @@ from django.db import models
 class Proveedor(models.Model):
     nombre = models.CharField(max_length=45)
     telefono = models.CharField(max_length=10)
-    direccion = models.CharField(max_length=45)
+    direccion = models.CharField(max_length=100)
     nit = models.CharField(max_length=10)
     creacion = models.DateTimeField(auto_now_add=True)
     
